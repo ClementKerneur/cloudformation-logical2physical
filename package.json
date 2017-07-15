@@ -1,0 +1,20 @@
+{
+  "name": "cloudformation-logical2physical",
+  "version": "1.0.0",
+  "description": "Get CloudFormation Physical Id of your AWS Resource via the human readable Logical Name",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "aws",
+    "cloudformation",
+    "resources"
+  ],
+  "author": "Clement Kerneur",
+  "license": "ISC",
+  "dependencies": {
+    "aws-sdk": "^2.85.0",
+    "deasync": "^0.1.10"
+  }
+}
