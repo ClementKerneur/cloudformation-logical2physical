@@ -1,6 +1,6 @@
 {
   "name": "cloudformation-logical2physical",
-  "version": "1.0.0",
+  "version": "1.0.2",
   "description": "Get CloudFormation Physical Id of your AWS Resource via the human readable Logical Name",
   "main": "index.js",
   "scripts": {
@@ -11,6 +11,10 @@
     "cloudformation",
     "resources"
   ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ClementKerneur/cloudformation-logical2physical.git"
+  },
   "author": "Clement Kerneur",
   "license": "ISC",
   "dependencies": {
