@@ -1,4 +1,5 @@
 import DeAsync from 'deasync'
+import Async from 'async'
 export default class CloudFormationLogicalToPhysical {
 
     constructor(cloudformation, stack) {
@@ -8,14 +9,33 @@ export default class CloudFormationLogicalToPhysical {
 
     resolve(logicalId) {
         let done = false
-        let physicalId
-        this.cloudformation.describeStackResource({
-            StackName: this.stack,
-            LogicalResourceId: logicalId
-        }, (err, res) => {
-            physicalId = res.StackResourceDetail.PhysicalResourceId 
-            done = true
-        })
+        let physicalId = null
+
+        Async.whilst(
+            () => { return !physicalId },
+            (callback) => {
+
+                this.cloudformation.describeStackResource({
+                    StackName: this.stack,
+                    LogicalResourceId: logicalId
+                }, (err, res) => {
+                    if(err && err.code == 'Throttling')  {
+                        setTimeout( callback, 1000 )
+                    }
+                    else {
+                        if(err) { callback(err); return; }
+
+                        physicalId = res.StackResourceDetail.PhysicalResourceId
+                        done = true
+                        callback(null, physicalId)
+                    }
+                })
+
+            },
+            (err, n) => {
+                if(err) throw err
+            }
+        )
 
         DeAsync.loopWhile( () => { return !done })
         return physicalId

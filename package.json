@@ -18,7 +18,13 @@
   "author": "Clement Kerneur",
   "license": "ISC",
   "dependencies": {
+    "async": "^2.5.0",
     "aws-sdk": "^2.85.0",
     "deasync": "^0.1.10"
+  },
+  "devDependencies": {
+    "babel-preset-es2015": "^6.24.1",
+    "gulp": "^3.9.1",
+    "gulp-babel": "^7.0.0"
   }
 }
