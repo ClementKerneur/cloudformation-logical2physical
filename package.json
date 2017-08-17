@@ -1,6 +1,6 @@
 {
   "name": "cloudformation-logical2physical",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Get CloudFormation Physical Id of your AWS Resource via the human readable Logical Name",
   "main": "index.js",
   "scripts": {
