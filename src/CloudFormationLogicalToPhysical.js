@@ -7,7 +7,7 @@ export default class CloudFormationLogicalToPhysical {
         this.stack = stack
     }
 
-    resolve(logicalId) {
+    resolve(logicalId, end) {
         let done = false
         let physicalId = null
 
@@ -34,11 +34,17 @@ export default class CloudFormationLogicalToPhysical {
             },
             (err, n) => {
                 if(err) throw err
+
+                if(typeof end == 'function') {
+                    end(null, physicalId)
+                }
             }
         )
 
-        DeAsync.loopWhile( () => { return !done })
-        return physicalId
+        if(typeof end == 'undefined') {
+            DeAsync.loopWhile( () => { return !done })
+            return physicalId
+        }
     }
 
 }
