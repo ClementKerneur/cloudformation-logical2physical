@@ -1,6 +1,6 @@
 const gulp = require('gulp');
 const babel = require('gulp-babel');
- 
+
 gulp.task('default', () => {
     return gulp.src('src/*.js')
         .pipe(babel({
@@ -8,3 +8,5 @@ gulp.task('default', () => {
         }))
         .pipe(gulp.dest('dist'));
 });
+
+gulp.task('install', ['default'])
